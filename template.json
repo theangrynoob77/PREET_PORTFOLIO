@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "kind": "website",
+  "slug": "sales-pipeline-tracker",
+  "title": "Sales Pipeline Website Template - Fast Pipeline-First Sales Tracker Website",
+  "summary": "A fast, pipeline-first sales tracker for sales teams, founders and BDMs, in chalk white, ink navy and signal lime: a marketing site with a live race-lane hero, scroll-scrubbed deal story, shortcut deck, pricing and a talk-to-sales form, plus a real shared team app with a drag-and-drop pipeline, won/lost with reasons, contacts linked to deals, call log with a timer, fill-in email templates, an activity feed, rep leaderboard and quota, and AI next-step and personalise helpers.",
+  "category": "Sales",
+  "tags": [
+    "sales",
+    "pipeline",
+    "crm",
+    "deal-tracker",
+    "saas",
+    "b2b"
+  ],
+  "brief": "app",
+  "services": [
+    "email",
+    "db",
+    "google_auth",
+    "ai"
+  ],
+  "min_plan": "free",
+  "thumbnail": "preview/slide-01.webp",
+  "previews": [
+    "preview/slide-01.webp",
+    "preview/page-01.webp"
+  ],
+  "notes_md": "KEEP: chalk canvas, ink-navy bands and the dark app bar, signal-lime accent with ink text on it (tokens in src/index.css @theme); Bricolage Grotesque display, Geist body, Geist Mono for every ₹ figure, date and key hint; crisp 2px ink borders and hard offset shadows; lane-stripe decoration; the giant full-width hero headline with the live lane (src/sections/HeroLane.tsx), the GSAP-pinned lane story (src/sections/LaneStory.tsx), the shortcut deck (src/sections/KeyDeck.tsx); the sidebar-free app in src/app/ with the bottom finish line for Won/Lost.\nSWAP: brand, city, copy, pricing, quote and FAQ in src/data/site.ts; pipeline stages, win chances, lost reasons and call outcomes in site.app; the sample team (deals, contacts, calls, activities, email templates) in src/data/samples.ts AND server/seed.json (same records — change both); the five photos in public/img/ (keep the high-key chalk-white, ink-navy, single-lime-accent style and the filenames).\nCONTENT: src/data/site.ts holds every visible string (marketing and app); src/data/samples.ts the demo-mode records; server/seed.json the live starter records.\nPAGES: / (home), /features, /pricing, /contact, /app (pipeline board), /app/contacts, /app/calls, /app/templates, /app/performance, /app/activity, /app/settings/team (Settings → Team: members, approvals, invite codes, join mode — the Team tab), * (not found). Marketing routes in src/App.tsx, app routes in src/app/AppShell.tsx; every /app page shows the sign-in gate (src/app/Gate.tsx) until a member signs in. MemberGate (src/components/TeamAccess.tsx) wraps the whole app in src/App.tsx, styled in src/app/teamStyles.ts: signed-out visitors see every marketing page; a signed-in account not yet on the team sees a waiting page with an invite-code form.\nRULE: the app never emails contacts. Email templates are filled and copied for the rep to send from their own inbox; the only email the site sends is the marketing contact form to the owner.\nSERVICES: email — provision email (Orvis-sent, Reply-To the visitor). server/routes/contact.py already implements POST /api/contact {form, fields} (no sign-in, 5 per visitor per hour, recipient = OWNER_EMAIL): mount it per the ROUTES: line and set OWNER_EMAIL=<the owner's email> in server/.env. Never send to an address that comes from the browser.\nSERVICES: db — set VITE_ORVIS_DB=1 in .env.local so sharedList/savedList use the server. Shared collections (/api/s, server/routes/shared.py): deals, contacts, activities, calls, email_templates. Per-user collections (/api/c, savedList): pipeline_prefs (board filters and monthly quota). Sign-in: the template has its own (useMe/signIn/signUp in src/app/Gate.tsx over /api/auth).\nSERVICES: google_auth — provision google_auth (Orvis Google client). The sign-in button calls signInWithGoogle from src/lib/live.ts (base /api/auth/oauth flow); the signed-in visitor comes from useMe() (/api/auth/me).\nSERVICES: ai — provision ai (tier=fast) with a system prompt written from src/data/site.ts: the assistant is a writing helper (a sales coach) inside the pipeline tracker for a sales team; each request gives it the deal or email template to work on and an instruction, and it either suggests one concrete next step for the deal (a short paragraph) or rewrites an email template for one contact, using ONLY facts from that data, in a direct, friendly tone; it never invents names, numbers, discounts or promises, never claims to have sent or changed anything, and declines anything unrelated. Each feature is its own conversation (askAssistant with no shared history). The UI is src/app/DealDrawer.tsx (\"Suggest next step\") and src/app/TemplatesPage.tsx (\"Personalise\") using askAssistant.\nACCESS: team members only — the first account is the owner; others join by approval or invite (Settings → Team).\nROUTES: mount the template's own API in server/main.py — add these lines right after `include_enabled(app)` (before the /assets mount and the SPA fallback route) and change nothing else in the base: `from routes.shared import router as shared_router`, `from routes.contact import router as contact_router`, then `app.include_router(shared_router)`, `app.include_router(contact_router)`.\nCOPY: keep it short and in plain, simple English a layman understands — headlines ≤ 8 words, body ≤ 2 sentences, cards one line, no jargon; let images and numbers carry the page. Personalise by replacing words, never by adding paragraphs."
+}

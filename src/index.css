@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-canvas: oklch(0.975 0.004 250);
+  --color-surface: oklch(0.995 0.002 250);
+  --color-mist: oklch(0.945 0.008 255);
+  --color-ink: oklch(0.2 0.045 262);
+  --color-ink-soft: oklch(0.3 0.05 262);
+  --color-lime: oklch(0.91 0.2 124);
+  --color-lime-deep: oklch(0.48 0.13 132);
+  --color-cobalt: oklch(0.52 0.19 260);
+  --color-muted: oklch(0.46 0.025 260);
+  --color-line: oklch(0.89 0.01 255);
+  --color-loss: oklch(0.55 0.2 25);
+  --color-amber: oklch(0.82 0.14 78);
+  --color-rose: oklch(0.6 0.14 350);
+
+  --shadow-hard: 4px 4px 0 0 var(--color-ink);
+  --shadow-hard-sm: 2px 2px 0 0 var(--color-ink);
+  --shadow-lift: 0 18px 40px -18px oklch(0.2 0.045 262 / 0.45);
+}
+
+html,
+body {
+  @apply bg-(--color-canvas) text-(--color-ink) font-body antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.lane-stripes {
+  background-image: repeating-linear-gradient(-45deg, var(--color-lime) 0 10px, transparent 10px 20px);
+}
+
+.lane-stripes-ink {
+  background-image: repeating-linear-gradient(-45deg, oklch(0.2 0.045 262 / 0.08) 0 8px, transparent 8px 16px);
+}
+
+kbd {
+  font-family: var(--font-mono);
+}
+
+::selection {
+  background: var(--color-lime);
+  color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
