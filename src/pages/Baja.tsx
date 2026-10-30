@@ -79,8 +79,8 @@ export function Baja() {
           <div className="grid gap-4 sm:grid-cols-2">
             <Fact k="Suspension and Traction Test" v="AIR 1" note="E-BAJA SAE India 2023" />
             <Fact k="Virtual Dynamics (All Terrain Performance)" v="AIR 3" />
-            <Fact k="Vehicle mass (CV-reported)" v="149 kg" note="Lightest in the competition; team result" />
-            <Fact k="Awards (CV-reported)" v="10 of 18" note="Won by the team in one season" />
+            <Fact k="Vehicle weight" v="149 kg" note="Lightest in the competition; team result" />
+            <Fact k="Awards" v="10 of 18" note="Won by the team in one season" />
           </div>
           <Note>These are separately labelled team results from Team Predators Racing, not individual awards.</Note>
         </Sub>
